@@ -1,16 +1,10 @@
 package com.example.holidaypicker
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.holidaypicker.ui.theme.HolidayPickerTheme
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 
 /*
 Prepare an application that, based on the (given by the user) name, selects a proposed holiday destination.
@@ -25,35 +19,18 @@ Prepare an application that, based on the (given by the user) name, selects a pr
 The placeholder description can be presented on a separate activity.
 */
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            HolidayPickerTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
-        }
-    }
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(onSaveInstanceState: Bundle?) {
+        super.onCreate(onSaveInstanceState)
+        setContentView(R.layout.activity_main)
+        val userName: EditText = findViewById(R.id.userName)
+        val userOutput: TextView = findViewById(R.id.userOutput)
+        val button: Button = findViewById(R.id.button)
+        val destinationClass = Destination()
 
-    @Composable
-    fun Greeting(name: String, modifier: Modifier = Modifier) {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier
-        )
-    }
-
-    @Preview(showBackground = true)
-    @Composable
-    fun GreetingPreview() {
-        HolidayPickerTheme {
-            Greeting("Android")
+        button.setOnClickListener {
+            val name = userName.text.toString()
+            userOutput.text = destinationClass.getDestination(name)
         }
     }
 }
