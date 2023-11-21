@@ -2,6 +2,9 @@ package com.example.ciphersharing
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 
 /*
     Write an application that allows you to encrypt (cipher), text given by the user.
@@ -17,5 +20,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val userText: EditText = findViewById(R.id.userText)
+        val encryptButton: Button = findViewById(R.id.encryptButton)
     }
 }
